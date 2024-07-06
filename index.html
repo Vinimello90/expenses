@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="./public/style.css" rel="stylesheet" />
+    <link href="./public/calculator.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <i class="fa-solid fa-sack-dollar"></i>
+        <h1 class="title"></h1>
+        <button class="calculator-btn" type="button">
+          <i class="fa-solid fa-calculator"></i>
+        </button>
+      </div>
+    </header>
+    <div class="month-btns-container">
+      <ul class="month-btns-list"></ul>
+    </div>
+    <div class="container-expenses">
+      <div>
+        <div class="alert">
+          <p></p>
+        </div>
+        <div class="section-top">
+          <div>
+            <div class="container-top">
+              <h3>Total de Despesas</h3>
+              <div class="btn-add-container">
+                <form>
+                  <button class="add-btn">
+                    <i class="fa-solid fa-plus"></i> Nova Despesa
+                  </button>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      id="expensetitle"
+                      placeholder="p. ex. Cartão de Crédito"
+                    />
+                    <input
+                      type="number"
+                      id="expensevalue"
+                      placeholder="p. ex. 100.00"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <h2 class="total-value">
+              <span class="currency">R$</span><span class="real">0</span>,<span
+                class="decimal"
+                >00</span
+              >
+            </h2>
+          </div>
+        </div>
+        <div class="section-center">
+          <div class="no-item-section"></div>
+          <div class="items-list"></div>
+          <div class="clear-btn">
+            <button type="button" class="clear">Deletar Tudo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="calculator" class="calculator">
+      <div class="container">
+        <div class="result-container">
+          <h4 id="count"></h4>
+          <h1 id="num">0</h1>
+        </div>
+        <div class="container-numbers">
+          <button
+            type="button"
+            tabindex="-1"
+            id="%"
+            name="percentage"
+            class="percentage btn-calc"
+          >
+            <h3 name="percentage" tabindex="-1">%</h3>
+          </button>
+          <button
+            type="button"
+            name="escape"
+            tabindex="-1"
+            id="Escape"
+            class="escape btn-calc"
+          >
+            <h3 name="escape" tabindex="-1" id="Escape">C</h3>
+          </button>
+          <button
+            type="button"
+            name="seven"
+            tabindex="-1"
+            id="7"
+            class="seven btn-calc"
+          >
+            <h3 name="seven" tabindex="-1" id="7">7</h3>
+          </button>
+          <button
+            type="button"
+            name="eight"
+            tabindex="-1"
+            id="8"
+            class="eight btn-calc"
+          >
+            <h3 name="eight" tabindex="-1" id="8">8</h3>
+          </button>
+          <button
+            type="button"
+            name="nine"
+            tabindex="-1"
+            id="9"
+            class="nine btn-calc"
+          >
+            <h3 name="nine" tabindex="-1" id="9">9</h3>
+          </button>
+          <button
+            type="button"
+            name="four"
+            tabindex="-1"
+            id="4"
+            class="four btn-calc"
+          >
+            <h3 name="four" tabindex="-1" id="4">4</h3>
+          </button>
+          <button
+            type="button"
+            name="five"
+            tabindex="-1"
+            id="5"
+            class="five btn-calc"
+          >
+            <h3 name="five" tabindex="-1" id="5">5</h3>
+          </button>
+          <button
+            type="button"
+            name="six"
+            tabindex="-1"
+            id="6"
+            class="six btn-calc"
+          >
+            <h3 name="six" tabindex="-1" id="6">6</h3>
+          </button>
+          <button
+            type="button"
+            name="one"
+            tabindex="-1"
+            id="1"
+            class="one btn-calc"
+          >
+            <h3 name="one" tabindex="-1" id="1">1</h3>
+          </button>
+          <button
+            type="button"
+            name="two"
+            tabindex="-1"
+            id="2"
+            class="two btn-calc"
+          >
+            <h3 name="two" tabindex="-1" id="2">2</h3>
+          </button>
+          <button
+            type="button"
+            name="three"
+            tabindex="-1"
+            id="3"
+            class="three btn-calc"
+          >
+            <h3 name="three" tabindex="-1" id="3">3</h3>
+          </button>
+          <button
+            type="button"
+            name="positive-negative"
+            tabindex="-1"
+            id="plusOrMinus"
+            class="positive-negative btn-calc"
+          >
+            <h3 id="plusOrMinus" tabindex="-1" name="positive-negative">+/-</h3>
+          </button>
+          <button
+            name="zero"
+            type="button"
+            tabindex="-1"
+            id="0"
+            class="zero btn-calc"
+          >
+            <h3 name="zero" tabindex="-1">0</h3>
+          </button>
+          <button
+            type="button"
+            name="coma"
+            tabindex="-1"
+            id="."
+            class="coma btn-calc"
+          >
+            <h3 name="coma" tabindex="-1" id=".">.</h3>
+          </button>
+          <button
+            type="button"
+            name="backspace"
+            tabindex="-1"
+            id="Backspace"
+            class="backspace btn-calc"
+          >
+            <h3
+              class="backspace-icon"
+              name="backspace"
+              tabindex="-1"
+              id="Backspace"
+            >
+              <span class="material-symbols-outlined">
+                <i class="fa-solid fa-delete-left"></i>
+              </span>
+            </h3>
+          </button>
+          <button
+            type="button"
+            name="division"
+            tabindex="-1"
+            id="/"
+            class="division btn-calc"
+          >
+            <h3 name="division" tabindex="-1" id="/">÷</h3>
+          </button>
+          <button
+            type="button"
+            name="multiply"
+            tabindex="-1"
+            id="*"
+            class="multiply btn-calc"
+          >
+            <h3 name="multiply" tabindex="-1" id="*">x</h3>
+          </button>
+          <button
+            type="button"
+            name="subtract"
+            tabindex="-1"
+            id="-"
+            class="subtract btn-calc"
+          >
+            <h3 name="subtract" tabindex="-1" id="-">-</h3>
+          </button>
+          <button
+            type="button"
+            name="addition"
+            tabindex="-1"
+            id="+"
+            class="addition btn-calc"
+          >
+            <h3 name="addition" tabindex="-1" id="+">+</h3>
+          </button>
+          <button
+            type="button"
+            name="result"
+            tabindex="-1"
+            id="Enter"
+            class="result btn-calc"
+          >
+            <h3 name="result" tabindex="-1" id="Enter">=</h3>
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer><p>© Vinicius B. Mello - 2024</p></footer>
+    <script src="./index.js" charset="UTF-8"></script>
+    <script src="./calculator.js" charset="UTF-8"></script>
+  </body>
+</html>
