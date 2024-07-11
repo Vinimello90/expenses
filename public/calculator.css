@@ -1,79 +1,35 @@
-.calculator-btn {
-  position: absolute;
-  float: right;
-  right: 1.8rem;
-  top: 2.1rem;
-  background-color: #aabeff;
-  color: #5a3bc9;
-  border: none;
-  box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.3);
-  border-radius: 0.6rem;
-  font-size: 1.7rem;
-  height: 2.8rem;
-  width: 2.8rem;
-  animation: bounce 2s ease-in-out infinite;
-  transition: color, background-color linear 0.3s;
-  cursor: pointer;
-  z-index: 99;
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.calculator-btn:hover {
-  background-color: #8564fb;
-  color: #aabeff;
-}
-
 .calculator {
-  position: absolute;
-  overflow: hidden;
-  opacity: 0;
-  right: 3.4rem;
-  top: 3.4rem;
-  width: 0;
-  height: 0;
-  transition: all linear 0.3s;
-  z-index: 1;
-}
-
-.display {
-  right: 3.4rem;
-  opacity: 100%;
-  top: 5.3rem;
-  width: 320px;
-  height: 380px;
-}
-
-.container {
   display: flex;
   flex-direction: column;
   background-color: #5a3bc9;
   border-radius: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   width: 300px;
-  height: 363px;
-  padding: 10px 10px 10px 10px;
+  height: fit-content;
+  padding: 20px 10px 10px 10px;
   box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.3);
+  position: absolute;
+  right: 1.6rem;
+  overflow: hidden;
+  transform: translateY(-30rem);
+  transition: all linear 0.3s;
+  z-index: 2;
+}
+
+.display {
+  transform: translateY(2.85rem);
 }
 
 .result-container {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   align-items: end;
   background: rgb(201, 213, 255);
   border: 3px solid #5a3bc9;
-  border-radius: 8px;
-  height: 65px;
+  border-radius: 12px;
+  height: fit-content;
   margin-bottom: 10px;
 }
 
@@ -82,21 +38,22 @@ h1 {
   color: #3e2596;
   font-size: 38.5px;
   font-weight: 700;
-  margin: -1px;
+  line-height: 35px;
   padding-right: 8px;
+  padding-bottom: 5px;
+  padding-top: 4px;
 }
 
 h4 {
   display: none;
-  position: fixed;
-  margin: 0;
-  margin-bottom: 42px;
-  margin-right: 12px;
-  padding: 0;
   font-family: "Roboto Mono", monospace;
   font-size: 12.5px;
   font-weight: 900;
   color: rgb(94, 85, 199);
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  line-height: 6px;
 }
 
 .container-numbers {
@@ -150,9 +107,4 @@ h4 {
 
 .addition {
   grid-area: 4 / 4 / 5 / 5;
-}
-
-@media screen and (min-width: 1201px) {
-  .calculator-btn {
-  }
 }

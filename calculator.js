@@ -13,6 +13,7 @@ var negativeStatus = "";
 
 const element = document.getElementById("num");
 const calculatorBtn = document.querySelector(".calculator-btn");
+const calculatorBtnIcon = document.querySelector(".calculator-btn .fa-solid");
 const inputContainer = document.querySelector(".input-container");
 
 calculatorBtn.addEventListener("click", openCalculator);
@@ -43,6 +44,8 @@ function openCalculator() {
     return;
   }
   calculator.classList.add("display");
+  calculatorBtn.classList.add("open");
+  calculatorBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
   const buttonNumbers = document.querySelectorAll(".btn-calc").length;
   for (let i = 0; i < buttonNumbers; i++) {
     document.querySelectorAll(".btn-calc")[i].addEventListener("click", click);
@@ -53,6 +56,8 @@ function openCalculator() {
 function closeCalculator() {
   const calculator = document.querySelector(".calculator");
   calculator.classList.remove("display");
+  calculatorBtn.classList.remove("open");
+  calculatorBtn.innerHTML = `<i class="fa-solid fa-calculator"></i>`;
   const buttonNumbers = document.querySelectorAll(".btn-calc").length;
   for (let i = 0; i < buttonNumbers; i++) {
     document
@@ -80,7 +85,7 @@ function calculator(key) {
         prevInput = "";
         currentValue = "num1";
         operator = "";
-        document.getElementById("count").style.display = "none";
+        document.getElementById("count").style.height = "none";
         negativeStatus = false;
         closeCalculator();
         return;

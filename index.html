@@ -32,62 +32,36 @@
   <body>
     <header>
       <div class="header-container">
-        <i class="fa-solid fa-sack-dollar"></i>
-        <h1 class="title"></h1>
+        <div class="title-container">
+          <i class="fa-solid fa-sack-dollar"></i>
+          <h1 class="title"></h1>
+          <div class="currency-converter">
+            <form class="currency-form">
+              <button type="submit" class="convertBtn">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+              <input type="number" id="currencyValue" />
+              <div class="select-convert-to">
+                <select id="convertTo" class="convert-to"></select>
+              </div>
+              <button class="invertBtn" type="button">
+                <i class="fa-solid fa-right-left"></i>
+              </button>
+              <div class="select-convert-from">
+                <select id="convertFrom" class="convert-from"></select>
+              </div>
+            </form>
+            <div class="current-dollar-rate">
+              <h3></h3>
+              <h2></h2>
+            </div>
+          </div>
+        </div>
         <button class="calculator-btn" type="button">
           <i class="fa-solid fa-calculator"></i>
         </button>
       </div>
     </header>
-    <div class="month-btns-container">
-      <ul class="month-btns-list"></ul>
-    </div>
-    <div class="container-expenses">
-      <div>
-        <div class="alert">
-          <p></p>
-        </div>
-        <div class="section-top">
-          <div>
-            <div class="container-top">
-              <h3>Total de Despesas</h3>
-              <div class="btn-add-container">
-                <form>
-                  <button class="add-btn">
-                    <i class="fa-solid fa-plus"></i> Nova Despesa
-                  </button>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      id="expensetitle"
-                      placeholder="p. ex. Cartão de Crédito"
-                    />
-                    <input
-                      type="number"
-                      id="expensevalue"
-                      placeholder="p. ex. 100.00"
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-            <h2 class="total-value">
-              <span class="currency">R$</span><span class="real">0</span>,<span
-                class="decimal"
-                >00</span
-              >
-            </h2>
-          </div>
-        </div>
-        <div class="section-center">
-          <div class="no-item-section"></div>
-          <div class="items-list"></div>
-          <div class="clear-btn">
-            <button type="button" class="clear">Deletar Tudo</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div id="calculator" class="calculator">
       <div class="container">
         <div class="result-container">
@@ -287,8 +261,58 @@
         </div>
       </div>
     </div>
+    <div class="month-btns-container">
+      <ul class="month-btns-list"></ul>
+    </div>
+    <div class="container-expenses">
+      <div>
+        <div class="alert">
+          <p></p>
+        </div>
+        <div class="section-top">
+          <div>
+            <div class="container-top">
+              <h3>Total de Despesas</h3>
+              <div class="btn-add-container">
+                <form>
+                  <button class="add-btn">
+                    <i class="fa-solid fa-plus"></i> Nova Despesa
+                  </button>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      id="expensetitle"
+                      placeholder="p. ex. Cartão de Crédito"
+                    />
+                    <input
+                      type="number"
+                      id="expensevalue"
+                      placeholder="p. ex. 100.00"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <h2 class="total-value">
+              <span class="currency">R$</span><span class="real">0</span>,<span
+                class="decimal"
+                >00</span
+              >
+            </h2>
+          </div>
+        </div>
+        <div class="section-center">
+          <div class="no-item-section"></div>
+          <div class="items-list"></div>
+          <div class="clear-btn">
+            <button type="button" class="clear">Deletar Tudo</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer><p>© Vinicius B. Mello - 2024</p></footer>
     <script src="./index.js" charset="UTF-8"></script>
     <script src="./calculator.js" charset="UTF-8"></script>
+    <script src="./exchangerate.js" charset="UTF-8"></script>
   </body>
 </html>

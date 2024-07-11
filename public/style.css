@@ -32,13 +32,165 @@ body {
   min-height: 100vh;
 }
 
+header {
+  z-index: 99;
+}
+
 .header-container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
   background-color: #5a3bc9;
-  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.3);
   padding-left: 1.7rem;
   height: 3.5rem;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.3);
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+#currencyValue {
+  border-radius: 0.5rem;
+  height: 2rem;
+  font-size: 0.8rem;
+  width: 7rem;
+}
+
+#convertTo {
+  margin-right: 0.5rem;
+}
+
+.convertBtn {
+  font-size: 1.3rem;
+  padding: 0 0.25rem;
+  padding-left: 0.5rem;
+  background-color: #5a3bc9;
+  border-color: transparent;
+  color: rgb(194, 177, 255);
+  cursor: pointer;
+  transition: color linear 0.3s;
+}
+
+.convertBtn:hover {
+  color: white;
+}
+
+.currency-converter {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+select {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  padding-right: 10px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='rgb(194, 177, 255)' viewBox='0 0 320 512'><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+  background-repeat: no-repeat, repeat;
+  background-position: left 2.6rem top 30%, 0 0;
+  background-size: 0.65em auto, 100%;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  text-align: center;
+  width: 3.5rem;
+  height: 100%;
+  color: rgb(194, 177, 255);
+  border-color: transparent;
+  transition: all linear 0.3s;
+  cursor: pointer;
+}
+
+select:hover {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 320 512'><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: left 2.6rem top 30%, 0 0;
+  background-size: 0.65em auto, 100%;
+  color: white;
+}
+
+.active {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='rgb(194, 177, 255)' viewBox='0 0 320 512'><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d='M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z'/></svg>");
+  background-repeat: no-repeat, repeat;
+  background-position: left 2.6rem top 30%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+
+.active {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='rgb(194, 177, 255)' viewBox='0 0 320 512'><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d='M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z'/></svg>");
+  background-repeat: no-repeat, repeat;
+  background-position: left 2.6rem top 30%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+option {
+  background-color: white;
+  color: #5a3bc9;
+}
+
+.invertBtn {
+  font-size: 1.3rem;
+  height: 100%;
+  padding: 0.5rem;
+  background-color: #5a3bc9;
+  border-color: transparent;
+  color: rgb(194, 177, 255);
+  cursor: pointer;
+  transition: color linear 0.3s;
+}
+
+.invertBtn:hover {
+  color: white;
+}
+
+.current-dollar-rate {
+  text-align: left;
+  width: 17rem;
+  margin-left: 0.2rem;
+}
+
+.fa-sort-up {
+  position: relative;
+  color: white;
+  margin: 0 0.34rem;
+  color: rgb(0, 199, 0);
+}
+.fa-sort-down {
+  position: relative;
+  bottom: 0.35rem;
+  color: white;
+  margin: 0 0.34rem;
+  color: rgb(255, 55, 55);
+}
+.current-dollar-rate h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: white;
+}
+
+.current-dollar-rate h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: white;
+}
+
+.converted-value h2 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: white;
+  width: 18.5rem;
 }
 
 .fa-sack-dollar {
@@ -57,11 +209,48 @@ body {
   text-align: center;
 }
 
+.calculator-btn {
+  display: grid;
+  place-items: center;
+  background-color: #5a3bc9;
+  color: #bab5ff;
+  border: none;
+  font-size: 1.8rem;
+  height: 100%;
+  width: 3.5rem;
+  transform: rotate(0deg);
+  transition: all linear 0.3s;
+  cursor: pointer;
+}
+
+.calculator-btn .fa-solid {
+  transform: scale(1);
+  transition: transform linear 0.3s;
+}
+
+.calculator-btn:hover .fa-solid {
+  transform: scale(1.15);
+}
+
+.calculator-btn:hover {
+  background-color: #8564fb;
+  color: #bab5ff;
+}
+
+.open {
+  background-color: #b0aaff;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+  color: #8564fb;
+}
+
 .month-btns-container {
   display: grid;
   place-items: center;
   margin-top: 2.5rem;
-  z-index: 100;
+  z-index: 0;
 }
 
 ul {
@@ -270,14 +459,14 @@ input {
 .section-center p {
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
-  color: #3d5487;
+  color: rgb(61, 84, 135);
 }
 
 .no-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.1rem;
 }
 
@@ -479,6 +668,7 @@ footer p {
 
   input {
     font-family: "Open Sans", sans-serif;
+    text-align: center;
     font-weight: 600;
     height: 2rem;
     border-color: transparent;
