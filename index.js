@@ -60,9 +60,15 @@ function clickOut(e) {
   if (e.target.className !== addBtn.className) {
     let btnCheck = btn.classList.contains("show");
     if (btnCheck) {
-      btn.classList.remove("show");
-      btnSmallScreen.classList.remove("show-btn");
-      addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`;
+      if (btnSmallScreen.classList.contains("show-btn")) {
+        btn.classList.remove("show");
+        btnSmallScreen.classList.remove("show-btn");
+        return;
+      } else {
+        btn.classList.remove("show");
+        btnSmallScreen.classList.remove("show-btn");
+        addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`;
+      }
     }
   }
 }
