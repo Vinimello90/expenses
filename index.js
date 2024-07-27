@@ -190,6 +190,7 @@ function editItem(e) {
   expensevalue.value = selectedItem[0].value.toFixed(2);
   addBtn.innerHTML = "Editar";
   btn.classList.add("show");
+  btnSmallScreen.classList.add("show-btn");
   editTitle = element.querySelector(".expense-title");
   editValue = element.querySelector(".expense-value");
   editStatus = true;
