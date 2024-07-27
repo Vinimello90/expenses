@@ -8,6 +8,15 @@ const currencyDetails = {
     code: "USD",
     name_plural: "US dollars",
   },
+  BRL: {
+    symbol: "R$",
+    name: "Real Brasileiro",
+    symbol_native: "R$",
+    decimal_digits: 2,
+    rounding: 0,
+    code: "BRL",
+    name_plural: "Brazilian reals",
+  },
   CAD: {
     symbol: "CA$",
     name: "Canadian Dollar",
@@ -152,15 +161,7 @@ const currencyDetails = {
     code: "BOB",
     name_plural: "Bolivian bolivianos",
   },
-  BRL: {
-    symbol: "R$",
-    name: "Real Brasileiro",
-    symbol_native: "R$",
-    decimal_digits: 2,
-    rounding: 0,
-    code: "BRL",
-    name_plural: "Brazilian reals",
-  },
+
   BWP: {
     symbol: "BWP",
     name: "Botswanan Pula",
@@ -295,15 +296,6 @@ const currencyDetails = {
     rounding: 0,
     code: "DZD",
     name_plural: "Algerian dinars",
-  },
-  EEK: {
-    symbol: "Ekr",
-    name: "Estonian Kroon",
-    symbol_native: "kr",
-    decimal_digits: 2,
-    rounding: 0,
-    code: "EEK",
-    name_plural: "Estonian kroons",
   },
   EGP: {
     symbol: "EGP",
@@ -565,24 +557,6 @@ const currencyDetails = {
     rounding: 0,
     code: "LKR",
     name_plural: "Sri Lankan rupees",
-  },
-  LTL: {
-    symbol: "Lt",
-    name: "Lithuanian Litas",
-    symbol_native: "Lt",
-    decimal_digits: 2,
-    rounding: 0,
-    code: "LTL",
-    name_plural: "Lithuanian litai",
-  },
-  LVL: {
-    symbol: "Ls",
-    name: "Latvian Lats",
-    symbol_native: "Ls",
-    decimal_digits: 2,
-    rounding: 0,
-    code: "LVL",
-    name_plural: "Latvian lati",
   },
   LYD: {
     symbol: "LD",
@@ -998,15 +972,6 @@ const currencyDetails = {
     code: "UZS",
     name_plural: "Uzbekistan som",
   },
-  VEF: {
-    symbol: "Bs.F.",
-    name: "Venezuelan Bolívar",
-    symbol_native: "Bs.F.",
-    decimal_digits: 2,
-    rounding: 0,
-    code: "VEF",
-    name_plural: "Venezuelan bolívars",
-  },
   VND: {
     symbol: "₫",
     name: "Vietnamese Dong",
@@ -1051,15 +1016,6 @@ const currencyDetails = {
     rounding: 0,
     code: "ZAR",
     name_plural: "South African rand",
-  },
-  ZMK: {
-    symbol: "ZK",
-    name: "Zambian Kwacha",
-    symbol_native: "ZK",
-    decimal_digits: 0,
-    rounding: 0,
-    code: "ZMK",
-    name_plural: "Zambian kwachas",
   },
   ZWL: {
     symbol: "ZWL$",
@@ -1109,7 +1065,6 @@ function openSelect(e) {
 function closeSelect(e) {
   const selectFromCheck = selectFrom.classList.contains("active");
   const selectToCheck = selectTo.classList.contains("active");
-  console.log(selectTo);
   if (selectToCheck) {
     selectTo.classList.remove("active");
   }
@@ -1130,8 +1085,42 @@ async function invertCurrency() {
   const symbolTo = currencyDetails[codeTo].symbol_native;
   const currencyNameFrom = currencyDetails[codeFrom].name;
   const currencyNameTo = currencyDetails[codeTo].name;
-
   const rates = await getRates(codeFrom);
+  const rateLocalStorage = getRateLocalStorage(codeFrom);
+
+  const prevValueTo = rateLocalStorage[0].rates;
+  const valueTo = rates[codeTo];
+  const valueFrom = rates[codeFrom];
+  if (valueTo === prevValueTo[codeTo]) {
+    currencyTextFrom.innerHTML = `${symbolFrom} ${valueFrom.toFixed(
+      2
+    )} ${currencyNameFrom} igual a`;
+    currencyTextTo.innerHTML = `${symbolTo} ${valueTo.toFixed(
+      2
+    )} ${currencyNameTo}`;
+    return;
+  }
+  if (valueTo > prevValueTo[codeTo]) {
+    displayRateUp(
+      currencyNameFrom,
+      currencyNameTo,
+      symbolFrom,
+      symbolTo,
+      valueFrom,
+      valueTo
+    );
+  } else {
+    displayRateDown(
+      currencyNameFrom,
+      currencyNameTo,
+      symbolFrom,
+      symbolTo,
+      valueFrom,
+      valueTo
+    );
+    return;
+  }
+
   const rate = rates[codeTo].toFixed(2);
   const value = rates[codeFrom];
   currencyTextFrom.innerHTML = `<span><i class="fa-solid fa-sort-up"></i></span>${symbolFrom} ${value.toFixed(
@@ -1199,7 +1188,7 @@ async function currencyConvert(e) {
 }
 
 async function SetupCurrency() {
-  currencyCode.forEach((item) => {
+  currencyCode.forEach(async (item) => {
     const element = document.createElement("option");
     const attr = document.createAttribute("value");
     attr.value = item;
@@ -1226,13 +1215,13 @@ async function SetupCurrency() {
   const symbolTo = currencyDetails[codeTo].symbol_native;
   const NameFrom = currencyDetails[codeFrom].name;
   const NameTo = currencyDetails[codeTo].name;
+  rates = await getRates(codeFrom);
   const rateLocalStorage = getRateLocalStorage(codeFrom);
   if (rateLocalStorage[0]) {
     const prevValueTo = rateLocalStorage[0].rates;
-    const rates = await getRates(codeFrom);
+    rates = await getRates(codeFrom);
     const valueTo = rates[codeTo];
     const valueFrom = rates[codeFrom];
-
     if (valueTo === prevValueTo[codeTo]) {
       currencyTextFrom.innerHTML = `${symbolFrom} ${valueFrom.toFixed(
         2
@@ -1253,16 +1242,6 @@ async function SetupCurrency() {
       );
       return;
     }
-  }
-  if (!rateLocalStorage[0]) {
-    const rates = await getRates(codeFrom);
-    setRateLocalStorage(codeFrom, rates);
-    const value = rates[codeFrom];
-    const rate = rates[codeTo];
-    currencyTextFrom.innerHTML = `${symbolFrom} ${value.toFixed(
-      2
-    )} ${NameFrom} igual a`;
-    currencyTextTo.innerHTML = `${symbolTo} ${rate.toFixed(2)} ${NameTo}`;
   }
 }
 
@@ -1296,7 +1275,6 @@ function displayRateDown(
 
 async function getRates(codeFrom) {
   let rates = getRateLocalStorage(codeFrom);
-
   if (rates[0]) {
     if (rates[0].date !== date) {
       if (rates[1]) {
@@ -1319,8 +1297,10 @@ async function getRates(codeFrom) {
   }
   const url = `https://open.er-api.com/v6/latest/${codeFrom}`;
   rates = await (await fetch(url)).json();
-  console.log(rates.rates);
-  return rates.rates;
+  setRateLocalStorage(codeFrom, rates.rates);
+  console.log(rates);
+  rateValue = rates;
+  return rateValue.rates;
 }
 
 function setRateLocalStorage(code, rates) {

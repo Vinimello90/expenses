@@ -1,10 +1,12 @@
 const inputForm = document.querySelectorAll("input");
 const addBtn = document.querySelector(".add-btn");
+const addBtnSmallScreen = document.querySelector(".add-btn-smallscreen");
 const itemsList = document.querySelector(".items-list");
 const alert = document.querySelector(".alert");
 const clearBtn = document.querySelector(".clear");
 const monthBtnList = document.querySelector(".month-btns-list");
 const btn = document.querySelector(".input-container");
+const btnSmallScreen = document.querySelector(".btn-add-container");
 
 const newDate = new Date();
 let editStatus = false;
@@ -26,13 +28,26 @@ const monthName = [
   "dezembro",
 ];
 let monthInteger = newDate.getMonth();
+document.querySelector("title").innerHTML = "Despesas " + newDate.getFullYear();
 
 window.addEventListener("DOMContentLoaded", setupItems);
 window.addEventListener("click", clickOut);
 addBtn.addEventListener("click", addItemBtn);
+addBtnSmallScreen.addEventListener("click", addItemBtn);
 clearBtn.addEventListener("click", clearItems);
 
 function clickOut(e) {
+  console.log(e.target.className);
+
+  if (e.target.className === "form") {
+    return;
+  }
+  if (e.target.className === "add-btn") {
+    return;
+  }
+  if (e.target.className === "material-symbols-outlined") {
+    return;
+  }
   if (e.target.id === "expensetitle") {
     return;
   }
@@ -46,7 +61,7 @@ function clickOut(e) {
     let btnCheck = btn.classList.contains("show");
     if (btnCheck) {
       btn.classList.remove("show");
-      console.log("teste");
+      btnSmallScreen.classList.remove("show-btn");
       addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`;
     }
   }
@@ -76,9 +91,14 @@ function selectMonth(event) {
 
 function addItemBtn(e) {
   e.preventDefault();
-  let btnCheck = btn.classList.contains("show");
+  console.log(e.target);
+  const btnCheck = btn.classList.contains("show");
+  const btnSmallScreenCheck = e.target.className;
   if (!btnCheck) {
     btn.classList.add("show");
+    btnSmallScreenCheck === "material-symbols-outlined"
+      ? btnSmallScreen.classList.add("show-btn")
+      : null;
     addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Adicionar`;
   } else {
     const newDateId = new Date();
@@ -106,14 +126,23 @@ function addItemBtn(e) {
       setDefault();
       displayAlert("Item foi alterado!", "success");
     }
-    btn.classList.remove("show");
-    addBtn.innerHTML = "Nova Despesa";
+    if (btnSmallScreen.classList.contains("show-btn")) {
+      btn.classList.remove("show");
+      btnSmallScreen.classList.remove("show-btn");
+      return;
+    } else {
+      btn.classList.remove("show");
+      btnSmallScreen.classList.remove("show-btn");
+      addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`;
+    }
   }
 }
 
 function createBtnsMonth(month) {
   const element = document.createElement("li");
-  element.innerHTML = `<button type="button" class="month-btn" data-id="${month}">${monthName[month]}</button>`;
+  element.innerHTML = `<button type="button" class="month-btn" data-id="${month}">${
+    !monthName[month] ? "dezembro" : monthName[month]
+  }</button>`;
   monthBtnList.appendChild(element);
   const monthBtn = element.querySelector(".month-btn");
   monthBtn.addEventListener("click", selectMonth);
@@ -219,7 +248,9 @@ function setDefault() {
   editId = "";
   editTitle = "";
   editValue = "";
-  addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`;
+  !btnSmallScreen.classList.contains("show-btn")
+    ? (addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Nova Despesa`)
+    : null;
 }
 
 function displayAlert(text, action) {
@@ -253,7 +284,7 @@ function calculateTotal() {
 
 function setupItems() {
   const month = newDate.getMonth();
-  const months = [month - 2, month - 1, month];
+  let months = [month - 2, month - 1, month];
   if (document.querySelector(".month-btns-list").children.length === 0) {
     months.map((month) => {
       createBtnsMonth(month);
@@ -290,11 +321,9 @@ function editLocalStorage(id, title, value) {
 
 function removeFromLocalStorage(id) {
   let items = getLocalStorage();
-  console.log(items);
   items = items.filter((item) => {
     return item.id !== id ? item : null;
   });
-  console.log(items);
   localStorage.setItem(monthName[monthInteger], JSON.stringify(items));
 }
 
