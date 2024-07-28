@@ -311,6 +311,10 @@ li .btn-end {
 
 li .btn-selected {
   background-color: #5a3bc9;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23e3eaff' viewBox='0 -50 350 250'><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d='M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 0.35rem;
 }
 
 li .btn-selected:hover {
@@ -380,7 +384,7 @@ form {
 }
 
 .btn-add-container {
-  background-color: #d6d6ec;
+  background-color: #c6c1ff;
   width: 100%;
   height: 0;
   overflow: hidden;
@@ -389,7 +393,6 @@ form {
 
 .show-btn {
   height: 4.3rem;
-  border-bottom: solid #ff40b6;
 }
 
 .btn-add-container > form {
@@ -422,7 +425,6 @@ form {
 
 input {
   font-family: "Open Sans", sans-serif;
-  text-align: center;
   font-weight: 600;
   height: 2.65rem;
   margin: 0.8rem 0;
@@ -431,15 +433,24 @@ input {
   font-size: 1rem;
 }
 
+input:focus {
+  outline: none;
+}
+
 #expensetitle {
   width: 13rem;
+  padding-left: 0.8rem;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
+  border: #ff40b6 solid;
   border-right: dashed #959494 1.5px;
 }
 
 #expensevalue {
   width: 7.5rem;
+  padding-left: 0.8rem;
+  border: #ff40b6 solid;
+  border-left: none;
 }
 
 .section-top {
